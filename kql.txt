@@ -1,0 +1,46 @@
+# All 5xx Server Errors
+status >= 500
+
+#  Find 404 Errors
+status == 404
+
+# Logs from a Specific Host
+host.name == "webserver-1"
+
+# Logs Containing a Phrase
+message : "connection refused"
+
+# Logs in the Last 15 Minutes
+@timestamp > now-15m
+
+# Logs from a Specific Kubernetes Namespace
+kubernetes.namespace == "production"
+
+# Logs from a Specific Container
+container.name == "nginx"
+
+# Error-Level Logs
+log.level == "error"
+
+# Exclude Health Checks
+NOT path : "/health"
+
+# Filter by Application Label (Kubernetes)
+kubernetes.labels.app == "my-api"
+
+# Logs with Response Time > 2s
+response_time > 2000
+
+# Successful GET Requests
+method == "GET" and status == 200
+
+# Logs from a Specific Pod
+kubernetes.pod.name : "my-app-*"
+
+# Logs Containing Exception or Stack Trace
+message : "Exception" OR message : "Stack trace"
+
+# Specific Service or Environment
+service.name == "auth-service" and environment == "prod"
+
+
