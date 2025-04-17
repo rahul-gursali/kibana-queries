@@ -1,46 +1,46 @@
-# All 5xx Server Errors
+# to see all 5xx server errors
 status >= 500
 
-#  Find 404 Errors
+# to find 404 errors
 status == 404
 
-# Logs from a Specific Host
+# to see logs from a specific host
 host.name == "webserver-1"
 
-# Logs Containing a Phrase
+# to check logs containing a phrase
 message : "connection refused"
 
-# Logs in the Last 15 Minutes
+# to check logs in the last 15 minutes
 @timestamp > now-15m
 
-# Logs from a Specific Kubernetes Namespace
+# to check logs from a specific kubernetes namespace
 kubernetes.namespace == "production"
 
-# Logs from a Specific Container
+# to check logs from a specific container
 container.name == "nginx"
 
-# Error-Level Logs
+# to check error-level logs
 log.level == "error"
 
-# Exclude Health Checks
+# this is to exclude health checks
 NOT path : "/health"
 
-# Filter by Application Label (Kubernetes)
+# to filter by application label -in k8s
 kubernetes.labels.app == "my-api"
 
-# Logs with Response Time > 2s
+# this is to check logs with response time > 2s
 response_time > 2000
 
-# Successful GET Requests
+# successful GET requests
 method == "GET" and status == 200
 
-# Logs from a Specific Pod
+# to see logs from a specific pod
 kubernetes.pod.name : "my-app-*"
 
-# Logs Containing Exception or Stack Trace
+# to see logs containing exception or stack trace
 message : "Exception" OR message : "Stack trace"
 
-# Specific Service or Environment
+# to see specific service or environment
 service.name == "auth-service" and environment == "prod"
 
 
